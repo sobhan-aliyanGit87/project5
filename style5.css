@@ -1,0 +1,50 @@
+/* بک‌گراند جذاب */
+body {
+    background-image: url('mohit.jpg'); /* تصویر بک‌گراند */
+    background-size: cover;
+    background-position: center;
+    font-family: 'Vazir', sans-serif;
+    color: #fff;
+}
+
+/* استایل برای کارت */
+.card {
+    margin-top: 50px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.card-header {
+    font-size: 1.5rem;
+    border-radius: 12px 12px 0 0;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+input[readonly] {
+    background-color: #e9ecef;
+}
+
+/* استایل برای ورودی‌های عددی */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* تنظیمات برای کارت‌ها */
+.card-body {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 30px;
+}

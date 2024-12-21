@@ -1,0 +1,72 @@
+/* افکت fadeIn برای ورود به صفحه */
+.fadeIn {
+    animation: fadeInAnimation 1s ease-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* افکت hover برای متون */
+.hover-text {
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hover-text:hover {
+    color: #007bff; /* رنگ تغییر می‌کند */
+    transform: translateY(-5px); /* بالا می‌رود */
+}
+
+/* افکت hover برای تصاویر */
+.hover-image {
+    transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+}
+
+.hover-image:hover {
+    transform: scale(1.05); /* بزرگ‌تر می‌شود */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* سایه زیبا */
+}
+
+/* افکت برای دکمه‌ها */
+.btn-primary {
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* رنگ دکمه تغییر می‌کند */
+}
+
+/* افکت نوار لغزنده برای تصویر بزرگ */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+img {
+    animation: slideIn 1s ease-out;
+    border-radius: 20px;
+}
+
+/* تنظیمات بیشتر برای بخش‌هایی که می‌خواهید */
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}

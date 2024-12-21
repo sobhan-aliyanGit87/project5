@@ -1,0 +1,569 @@
+/* استایل‌های عمومی سایت */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+/* استایل بخش بالای سایت */
+.hero-text {
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa); /* گرادیان ملایم */
+    color: #2f577e; /* رنگ متن آبی تیره */
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* افکت انتقال */
+}
+
+/* افکت کلی برای بخش */
+.hero-text:hover {
+    transform: scale(1.03); /* بزرگنمایی ملایم */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* سایه عمیق‌تر */
+}
+
+/* عنوان اصلی */
+.hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #34495e; /* آبی تیره */
+    transition: color 0.3s ease; /* تغییر رنگ در هنگام هاور */
+}
+
+/* افکت برای عنوان اصلی */
+.hero-text h1:hover {
+    color: #1abc9c; /* تغییر رنگ به سبز ملایم */
+}
+
+/* توضیحات */
+.hero-text p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #7f8c8d; /* خاکستری روشن */
+    transition: color 0.3s ease; /* تغییر رنگ در هنگام هاور */
+}
+
+/* افکت برای توضیحات */
+.hero-text p:hover {
+    color: #2c3e50; /* تغییر رنگ به آبی تیره */
+}
+
+
+
+
+
+/* استایل برای هدر */
+header {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+
+.navbar-brand img {
+    width: 50px;
+    height: 50px;
+}
+
+/* افکت هاور: تغییر سایز و اضافه کردن سایه */
+.navbar-brand:hover img {
+    transform: scale(1.2);   /* افزایش اندازه */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* اضافه کردن سایه */
+}
+/* استایل کلی لوگو */
+.navbar-brand img {
+    transition: transform 0.5s ease;
+    border-radius: 50%;  /* این ویژگی باعث می‌شود که لوگو به شکل دایره دربیاید */
+    object-fit: cover;   /* برای اطمینان از اینکه تصویر به درستی در داخل دایره قرار می‌گیرد */
+    width: 100px;         /* عرض تصویر */
+    height: 100px;        /* ارتفاع تصویر */
+}
+
+/* افکت چرخش هنگام هاور */
+.navbar-brand:hover img {
+    transform: rotate(360deg); /* لوگو 360 درجه می‌چرخد */
+}
+
+
+/* استایل بخش جستجو */
+form .form-control {
+    width: 250px;
+    border-radius: 30px;
+}
+/* استایل بخش جستجو */
+form .btn {
+   
+    border-radius: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* افکت‌ها برای منو */
+.navbar-nav .nav-item {
+    position: relative;
+    margin-right: 20px;
+    transition: all 0.3s ease; /* انیمیشن برای تمامی تغییرات */
+   
+}
+
+/* افکت هاور: تغییر رنگ و اضافه شدن خط زیر دکمه */
+.navbar-nav .nav-item:hover .nav-link {
+    color: #005f73; /* رنگ آبی تیره‌تر برای تغییر */
+    text-decoration: none; /* حذف خط زیرین پیش‌فرض */
+    padding-bottom: 4px; /* ایجاد فضای پایین متن */
+    border-bottom: 2px solid #211f42; /* اضافه شدن خط زیر با رنگ رسمی */
+    transform: translateY(-2px); /* حرکت به سمت بالا */
+    box-shadow: 0 2px 6px rgba(181, 13, 13, 0.15); /* سایه نرم برای برجسته شدن */
+}
+
+/* افکت سایز بزرگ‌تر دکمه در هاور */
+.navbar-nav .nav-item:hover .nav-link {
+    font-size: 1.1rem; /* بزرگ‌تر شدن سایز متن */
+    font-weight: bold; /* پررنگ شدن متن */
+}
+
+/* اضافه کردن انیمیشن بسیار نرم برای خط کشویی زیر */
+.navbar-nav .nav-item .nav-link {
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+/* افکت برجسته شدن در هاور */
+.navbar-nav .nav-item:hover .nav-link::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff; /* رنگ خط زیر */
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease; /* انیمیشن خط */
+}
+
+.navbar-nav .nav-item:hover .nav-link::before {
+    transform: scaleX(1); /* خط از چپ به راست نمایش داده می‌شود */
+}
+
+
+
+
+
+
+
+
+/* استایل کلی منو */
+.navbar {
+    background-color: #2c3e50; /* رنگ خاکی تیره برای منو */
+    border-bottom: 2px solid #34495e; /* خط جدا کننده برای زیر منو */
+}
+
+.navbar-nav .nav-item {
+    position: relative;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+}
+
+/* استایل لینک‌های منو */
+.navbar-nav .nav-link {
+    color: #ecf0f1; /* رنگ سفید برای متن لینک‌ها */
+    font-size: 1.1rem;
+    font-weight: 500; /* وزن فونت رسمی */
+    text-transform: uppercase; /* متنی با حروف بزرگ */
+    padding: 10px 15px; /* فاصله داخلی */
+    transition: all 0.3s ease;
+}
+
+/* تغییرات در هاور: رنگ و برجسته شدن */
+.navbar-nav .nav-item:hover .nav-link {
+    color: #ffffff; /* رنگ طلایی برای هاور */
+    transform: scale(1.05); /* بزرگ‌تر شدن دکمه */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* سایه نرم برای برجسته شدن */
+    border-bottom: 3px solid #ffffff; /* خط زیر لینک در حالت هاور */
+}
+
+/* اضافه کردن آیکون کنار متن لینک‌ها */
+.navbar-nav .nav-item .nav-link i {
+    margin-right: 8px; /* فاصله بین آیکون و متن */
+}
+
+/* افکت‌ها برای منوی کشویی */
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* نمایش منوی کشویی */
+    animation: slideIn 0.3s ease-out; /* انیمیشن کشویی */
+}
+
+/* انیمیشن برای منوی کشویی */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* شروع از بالاتر */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* استایل برای منوی کشویی */
+.navbar-nav .dropdown-menu {
+    background-color: #0a4b8d; /* رنگ پس‌زمینه منوی کشویی */
+    border-radius: 15px; /* گوشه‌های تیز */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* سایه برای منوی کشویی */
+    border-radius: 30px;
+}
+
+/* رنگ لینک‌های منوی کشویی */
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #ecf0f1; /* رنگ سفید برای لینک‌های منوی کشویی */
+    padding: 10px 15px;
+    font-weight: 400;
+    text-transform: none; /* حروف کوچک برای منوی کشویی */
+    transition: all 0.3s ease;
+}
+
+/* تغییر رنگ لینک‌ها در منوی کشویی هنگام هاور */
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #ffffff; /* رنگ پس‌زمینه طلایی در هاور */
+    color: #2c3e50; /* تغییر رنگ متن در هاور */
+  border-radius: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* استایل برای navbar و دکمه همبرگر */
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+    position: absolute; /* قرار دادن دکمه در گوشه صفحه */
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+}
+
+.navbar-toggler-icon {
+    background-color: #383549;
+    width: 35px;
+    height: 45px;
+    border-radius: 8px;
+}
+
+/* استایل برای لیست منو */
+.navbar-nav {
+    margin-left: auto;
+    text-align: center;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #fff;
+    padding: 10px 15px;
+}
+
+/* تغییر رنگ منوها */
+.navbar-nav .nav-item:hover .nav-link {
+    background-color: #41518c;
+}
+
+
+
+
+
+
+/* استایل برای نمایش منو در صفحات موبایل */
+@media (max-width: 0px) {
+    .navbar-collapse {
+        position: relative;
+        top: 60px;
+        right: 0;
+        left: 0;
+        background-color: #343a40;
+        z-index: 1000;
+        border-radius: 15px;
+        
+    }
+
+   
+    
+}
+ /* باز شدن منو هنگام قرار گرفتن موس روی دکمه همبرگر */
+ .navbar-toggler:focus+ .navbar-collapse {
+    display: flex ; /* منو باز می‌شود */
+    
+}
+.navbar-toggler:hover{
+    transition: 10s;
+}
+
+/* استایل برای منوی کشویی */
+.dropdown-menu {
+    background-color: #343a40;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #007bff;
+}
+
+
+
+
+
+
+/* استایل برای فوتر */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* استایل برای دکمه‌ها */
+.btn {
+    border-radius: 5px;
+}
+
+/* استایل برای فرم‌ها */
+.form-control {
+    border-radius: 5px;
+}
+
+/* استایل برای هر صفحه محتوای اصلی */
+.container {
+    padding: 30px 0;
+}
+
+/* استایل برای صفحه جستجو */
+form .form-control {
+    width: 250px;
+}
+
+/* استایل برای دکمه‌های منو */
+.navbar-nav .nav-item .nav-link {
+    color: #fff;
+}
+
+/* استایل برای لینک‌ها */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #5dd5ed;
+    background-color: transparent;
+}
+
+/* استایل برای منو در صفحات بزرگتر */
+@media (min-width: 992px) {
+    .navbar-toggler {
+        display: none; /* دکمه همبرگر در اندازه‌های بزرگتر مخفی می‌شود */
+    }
+
+    .navbar-nav {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 20px;
+    }
+}
+
+
+/* استایل کلی فوتر */
+.footer {
+    background-color: #2c3e50; /* رنگ تیره */
+    color: #ffffff;
+    padding: 20px 0;
+    border-top: 5px solid #1abc9c; /* نوار سبز */
+}
+
+.footer h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1abc9c; /* رنگ سبز */
+}
+
+.footer p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* استایل آیکون‌ها */
+.social-icons a {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #1abc9c; /* تغییر رنگ آیکون‌ها به سبز هنگام هاور */
+}
+
+/* استایل برای بخش درباره ما */
+.about-us {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+
+.about-image:hover img {
+    transform: scale(1.1); /* بزرگ شدن تصویر هنگام هاور */
+}
+
+
+
+.about-image:hover .overlay {
+    opacity: 1; /* نمایان شدن افکت محو هنگام هاور */
+}
+
+.overlay-text {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.overlay-text h2 {
+    font-size: 3rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* استایل برای متن پایین عکس */
+.about-description {
+    background-color: #2c3e50; /* آبی تیره برای حس حرفه‌ای */ /*---------------------------------------مهم----------------------------------*/
+    padding: 60px 40px; /* فاصله داخلی بیشتر برای فضای مناسب‌تر */
+    text-align: center;
+}
+
+.about-description h3 {
+    font-size: 2.5rem; /* اندازه فونت بزرگ‌تر */
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #f2f2f2; /* رنگ سفید روشن برای عنوان */
+}
+
+.about-description p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 900px; /* عرض بیشتر برای متن */
+    margin: 0 auto;
+    color: #ddd;
+    padding-bottom: 10px;
+    text-align: justify; /* تنظیم متن برای خوانایی بیشتر */
+}
+
+/* اضافه کردن افکت به عنوان متن */
+.about-description h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #ff6347; /* رنگ خط زیبا */
+    margin: 20px auto;
+}
+
+/* بهبود دسترسی برای موبایل */
+@media (max-width: 768px) {
+    .about-description h3 {
+        font-size: 2rem;
+    }
+
+    .about-description p {
+        font-size: 1rem;
+    }
+}
+/* استایل برای بخش هدر و منو */
+header, nav {
+    position: relative;
+    z-index: 10; /* این خط باعث می‌شود که هدر و منوها از تصویر بالاتر باشند */
+    
+}
+
+
+
+
+
+/* افکت محو */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 5; /* این باعث می‌شود که افکت محو در بالای تصویر قرار گیرد */
+}
+
+.about-image:hover .overlay {
+    opacity: 1;
+}
+/* استایل برای بخش درباره ما */
+.about-image {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden; /* این ویژگی اسکرول افقی اضافی را پنهان می‌کند */
+   
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /* تنظیم موقعیت تصویر به صورت مرکزی */
+    filter: brightness(50%);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* mahsol*/
+
+

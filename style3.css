@@ -1,0 +1,107 @@
+/* استایل برای صفحه محصول */
+.container {
+    margin-top: 30px;
+}
+
+h2, h4, h5 {
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+img
+{
+    border-radius: 15px;
+}
+.product-card {
+  
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    padding: 20px;
+    background-color: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+    transform: scale(1.1);
+}
+
+.product-details {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.product-details h4 {
+    color: #007bff;
+    font-size: 1.5rem;
+}
+
+.product-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.product-details ul li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.product-details .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.product-details .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+/* راست‌چین کردن متن در کارت محصول */
+.right-align {
+    text-align: right;
+    direction: rtl;
+}
+
+/* راست‌چین کردن عنوان محصول */
+.product-details h4, .product-details p, .product-details ul, .product-details h5 {
+    text-align: right;
+    direction: rtl;
+}
+
+/* تنظیمات برای لیست محصولات */
+.product-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.product-details ul li {
+    margin-bottom: 10px;
+}
+
+/* دکمه سفارش */
+.product-details .btn {
+    margin-top: 20px;
+}
+

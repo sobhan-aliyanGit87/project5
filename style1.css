@@ -1,0 +1,108 @@
+/* استایل‌های کلی */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('mohit1.jpg') no-repeat center center fixed; /* لینک تصویر پس‌زمینه */
+    background-size: cover; /* اندازه تصویر به‌گونه‌ای که تمام صفحه را بپوشاند */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #1c1717; /* رنگ متن را برای وضوح بهتر روی پس‌زمینه روشن کرده‌ایم */
+}
+
+/* باقی استایل‌ها مانند قبل */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.8); /* پس‌زمینه با شفافیت برای نمایش تصویر پشت آن */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#register-btn {
+    background-color: #28a745;
+    margin-top: 10px;
+}
+
+#register-btn:hover {
+    background-color: #218838;
+}
+
+/* استایل برای باکس پسورد */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* استایل برای آیکون چشم */
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 18px;
+}
+
+/* استایل برای ورودی پسورد */
+.password-container input[type="password"] {
+    width: 100%;
+    padding: 10px 30px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+/* تغییر رنگ آیکون در هنگام هاور */
+.password-toggle:hover {
+    color: #0056b3;
+}
+
+/* استایل برای زمانی که فرم ثبت‌نام نمایش داده می‌شود */
+#register-form {
+    display: none;
+}
+
+/* افکت تغییر رنگ برای دکمه‌ها */
+button:active {
+    transform: scale(0.98);
+}
