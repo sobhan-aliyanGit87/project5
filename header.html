@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خوراک دامی</title>
+    <title>کیا فرایند نوتریکا</title>
     <link href="bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,40 +22,36 @@
                 <!-- متن هدر -->
                 <div class="col-md-6 text-center">
                     <h1 class="display-4">شرکت کیا فرایند نوتریکا</h1>
-                    <p class="lead">کیا فرایند نوتریکا | کیفیت برتر خوراک دامی </p>
+                    <p class="lead">کیا فرایند نوتریکا | کیفیت برتر خوراک دامی</p>
                 </div>
-                <!-- دکمه جستجو -->
-                <div class="col-md-3 text-center text-md-end">
-                    <form class="d-flex" action="search.php" method="get">
-                        <input class="form-control" type="search" placeholder="جستجو ..." aria-label="Search" name="query">
-                        <button class="btn btn-primary" type="submit">جستجو</button>
+                <!-- بخش تاریخ و زمان آنلاین -->
+                <div class="col-md-3 text-start">
+                    <p id="date-time" class="lead"></p> <!-- نمایش تاریخ و زمان آنلاین -->
+                </div>
+            </div>
+            <!-- جستجو -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <form action="search.php" method="get" class="d-flex justify-content-center">
+                        <input type="text" class="form-control me-2" name="query" placeholder="جستجو در سایت..." aria-label="Search" style="border-radius: 25px; width: 300px;">
+                        <button class="btn btn-primary" type="submit" style="border-radius: 25px; padding: 10px 20px;">جستجو</button>
                     </form>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- منو -->
-    
+   
+
+    <script>
+        // نمایش تاریخ و زمان آنلاین
+        function updateDateTime() {
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+            document.getElementById('date-time').textContent = date.toLocaleString('fa-IR', options);
+        }
+        setInterval(updateDateTime, 1000); // به روز رسانی هر ثانیه
+    </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

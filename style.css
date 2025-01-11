@@ -84,11 +84,12 @@ header {
     transform: rotate(360deg); /* لوگو 360 درجه می‌چرخد */
 }
 
-
 /* استایل بخش جستجو */
 form .form-control {
     width: 250px;
     border-radius: 30px;
+    
+     
 }
 /* استایل بخش جستجو */
 form .btn {
@@ -257,84 +258,6 @@ form .btn {
 
 
 
-
-/* استایل برای navbar و دکمه همبرگر */
-.navbar-toggler {
-    border: none;
-    background-color: transparent;
-    position: absolute; /* قرار دادن دکمه در گوشه صفحه */
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-    width: 30px;
-    height: 30px;
-}
-
-.navbar-toggler-icon {
-    background-color: #383549;
-    width: 35px;
-    height: 45px;
-    border-radius: 8px;
-}
-
-/* استایل برای لیست منو */
-.navbar-nav {
-    margin-left: auto;
-    text-align: center;
-}
-
-.navbar-nav .nav-item .nav-link {
-    color: #fff;
-    padding: 10px 15px;
-}
-
-/* تغییر رنگ منوها */
-.navbar-nav .nav-item:hover .nav-link {
-    background-color: #41518c;
-}
-
-
-
-
-
-
-/* استایل برای نمایش منو در صفحات موبایل */
-@media (max-width: 0px) {
-    .navbar-collapse {
-        position: relative;
-        top: 60px;
-        right: 0;
-        left: 0;
-        background-color: #343a40;
-        z-index: 1000;
-        border-radius: 15px;
-        
-    }
-
-   
-    
-}
- /* باز شدن منو هنگام قرار گرفتن موس روی دکمه همبرگر */
- .navbar-toggler:focus+ .navbar-collapse {
-    display: flex ; /* منو باز می‌شود */
-    
-}
-.navbar-toggler:hover{
-    transition: 10s;
-}
-
-/* استایل برای منوی کشویی */
-.dropdown-menu {
-    background-color: #343a40;
-}
-
-.dropdown-item {
-    color: #fff;
-}
-
-.dropdown-item:hover {
-    background-color: #007bff;
-}
 
 
 

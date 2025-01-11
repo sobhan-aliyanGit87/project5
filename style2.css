@@ -1,3 +1,6 @@
+
+
+
 /* افکت fadeIn برای ورود به صفحه */
 .fadeIn {
     animation: fadeInAnimation 1s ease-out forwards;
@@ -70,3 +73,4 @@ h2 {
     color: #333;
     margin-bottom: 20px;
 }
+

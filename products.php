@@ -22,7 +22,7 @@ include("nav.html");
                 <li>افزایش تولید شیر</li>
                 <li>مناسب برای همه دام‌ها</li>
             </ul>
-            <h5><strong>قیمت: 1,000,000 تومان</strong></h5>
+            <h5><strong>قیمت:تماس</strong></h5>
             <a href="safe.html" class="btn btn-primary">سفارش محصول</a>
         </div>
     </div>
