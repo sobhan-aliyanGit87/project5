@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نوار بالای صفحه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Vazir', sans-serif;
+        }
+
+        /* نوار بالای صفحه */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)); /* تغییر رنگ از تیره به روشن */
+            color: #fff;
+            padding: 15px 0;
+            z-index: 1000; /* بالا بودن نسبت به سایر محتوای صفحه */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* سایه ملایم برای نوار */
+        }
+
+        /* اطلاعات تماس */
+        .contact-info {
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            color: #00e676; /* رنگ تغییر یافته هنگام هاور */
+        }
+
+        /* آیکون‌ها */
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons i {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .social-icons i:hover {
+            color: #00e676; /* تغییر رنگ آیکون‌ها هنگام هاور */
+        }
+
+        /* فضای پایین نوار تا محتوای اصلی */
+        .content {
+            padding-top: 80px; /* این مقدار برای جلوگیری از پوشش دادن محتوای اصلی توسط نوار بالای صفحه است */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نوار بالای صفحه -->
+    <div class="top-bar">
+        <div class="contact-info">
+            <span>تماس با ما: </span>
+            <a href="tel:+9821XXXXXXX">+98 21 XXXXXXXX</a> <!-- شماره تماس -->
+        </div>
+        <div class="social-icons">
+            <!-- آیکون‌های واتساپ، ایتا و دیگر پیام‌رسان‌ها -->
+            <a href="https://wa.me/yourwhatsappnumber" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://eitaa.com/yourchannel" target="_blank">
+                <i class="fab fa-telegram-plane"></i> <!-- آیکون ایتا -->
+            </a>
+            <a href="https://instagram.com/yourprofile" target="_blank">
+                <i class="fab fa-instagram"></i> <!-- آیکون اینستاگرام -->
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

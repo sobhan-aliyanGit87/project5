@@ -1,54 +1,67 @@
 <?php
 session_start();
 
-// اتصال به دیتابیس
+// اطلاعات دیتابیس
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = "login_db"; // نام دیتابیس
+$password = "Sobhan_87";
+$dbname = "user_management"; // نام دیتابیس شما
 
+// اتصال به دیتابیس
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// بررسی اتصال به دیتابیس
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("خطا در اتصال به دیتابیس: " . $conn->connect_error);
 }
 
-$signup_message = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // ثبت‌نام
-    if (isset($_POST['register'])) {
-        // دریافت نام کاربری و پسورد از فرم
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm_password'];
-
-        // بررسی اینکه نام کاربری قبلاً ثبت‌نام شده یا نه
-        $check_username_sql = "SELECT * FROM users WHERE username = '$username'";
-        $result = $conn->query($check_username_sql);
-
-        if ($result->num_rows > 0) {
-            $signup_message = "این نام کاربری قبلاً ثبت‌نام شده است!";
-        } else if ($password !== $confirm_password) {
-            $signup_message = "رمز عبور با تاییدیه تطابق ندارد!";
+$message = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $action = $_POST['action'];
+    $user_username = trim($_POST['username']);
+    $user_password = trim($_POST['password']);
+    if ($action == 'signup') {
+        $user_email = trim($_POST['email']);
+        $confirm_password = trim($_POST['confirm_password']);
+        
+        if ($user_password !== $confirm_password) {
+            $message = "رمز عبور و تایید رمز عبور باید یکسان باشند.";
         } else {
-            // ذخیره اطلاعات در دیتابیس
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT); // هش کردن پسورد
-            $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
-            if ($conn->query($sql) === TRUE) {
-                $_SESSION['username'] = $username;  // ذخیره نام کاربری در سشن
-                $_SESSION['message'] = "ثبت‌نام موفقیت‌آمیز!"; // پیام موفقیت
-                header("Location: index.php"); // هدایت به صفحه اصلی
-                exit();
+            $hashed_password = password_hash($user_password, PASSWORD_BCRYPT);
+            $sql = "SELECT * FROM users WHERE username = '$user_username' OR email = '$user_email'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $message = "این نام کاربری یا ایمیل قبلاً ثبت شده است.";
             } else {
-                $signup_message = "خطا در ثبت‌نام: " . $conn->error;
+                $sql = "INSERT INTO users (username, email, password) VALUES ('$user_username', '$user_email', '$hashed_password')";
+                if ($conn->query($sql) === TRUE) {
+                    $message = "ثبت‌نام موفقیت‌آمیز بود. لطفاً وارد شوید.";
+                } else {
+                    $message = "خطا در ثبت‌نام: " . $conn->error;
+                }
             }
+        }
+    } elseif ($action == 'login') {
+        $sql = "SELECT * FROM users WHERE username = '$user_username'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            if (password_verify($user_password, $user['password'])) {
+                $_SESSION['username'] = $user_username;
+                header("Location: index.php");
+                exit;
+            } else {
+                $message = "رمز عبور اشتباه است.";
+            }
+        } else {
+            $message = "کاربری با این مشخصات یافت نشد.";
         }
     }
 }
 
-$conn->close();
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: index.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,132 +69,244 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فرم ثبت‌نام</title>
+    <title>ورود و ثبت‌نام</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- CDN FontAwesome -->
     <style>
-        /* استایل‌ها */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background: url('bak.webp') no-repeat center center fixed;
+            font-family: 'Roboto', sans-serif;
+            background: url('mohit1.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            overflow: hidden;
         }
+
         .container {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
             width: 400px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
+            transform: scale(1);
+            animation: scaleIn 0.5s ease-out;
         }
-        .form-title {
-            font-size: 26px;
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .header {
+            font-size: 30px;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: #4caf50;
+            color: #ffffff;
+            letter-spacing: 1px;
         }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-        }
-        .btn {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            background-color: #4caf50;
-            color: #fff;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
+
         .message {
-            text-align: center;
-            color: #d9534f;
-            margin-bottom: 10px;
-        }
-        .message.success {
-            color: #5bc0de;
-        }
-        .toggle-btn {
-            background: none;
-            border: none;
-            color: #4caf50;
+            color: #ff4d4d;
             font-size: 14px;
-            cursor: pointer;
-            margin-top: 10px;
+            margin-bottom: 15px;
         }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border-radius: 12px;
+            border: 2px solid #ddd;
+            font-size: 16px;
+            outline: none;
+            background: #fff;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .form-button:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+        }
+
+        .form-link {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .form-link a {
+            color: #007bff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-link a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        #signup-form {
+            display: none;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #007bff;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        .eye-icon-slash {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #007bff;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
         .password-container {
             position: relative;
         }
-        .eye-icon {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 40px;
+            }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h2 class="form-title">ثبت‌نام</h2>
-        <div class="message <?php echo $signup_message ? 'success' : ''; ?>">
-            <?php echo $signup_message; ?>
+        <div class="header">ورود / ثبت‌نام</div>
+
+        <div class="message"><?php echo $message; ?></div>
+
+        <?php if (!isset($_SESSION['username'])): ?>
+            <form method="POST">
+                <input type="hidden" name="action" value="login">
+                <input type="text" name="username" class="form-input" placeholder="نام کاربری" required>
+                <div class="password-container">
+                    <input type="password" name="password" id="login-password" class="form-input" placeholder="رمز عبور" required>
+                    <i class="fas fa-eye eye-icon" id="toggle-login-password"></i>
+                </div>
+                <button type="submit" class="form-button">ورود</button>
+            </form>
+            
+            <div class="form-link">
+                <a href="#" id="show-signup">ثبت‌نام</a>
+            </div>
+
+            <div class="form-link">
+                <a href="#">فراموشی رمز عبور</a>
+            </div>
+
+        <?php else: ?>
+            <div class="form-link">
+                <p>خوش آمدید, <?php echo $_SESSION['username']; ?>!</p>
+                <a href="?logout=true">خروج</a>
+            </div>
+        <?php endif; ?>
+
+        <!-- فرم ثبت‌نام -->
+        <div id="signup-form">
+            <form method="POST">
+                <input type="hidden" name="action" value="signup">
+                <input type="text" name="username" class="form-input" placeholder="نام کاربری" required>
+                <input type="email" name="email" class="form-input" placeholder="ایمیل" required>
+                <div class="password-container">
+                    <input type="password" name="password" id="signup-password" class="form-input" placeholder="رمز عبور" required>
+                    <i class="fas fa-eye eye-icon" id="toggle-signup-password"></i>
+                </div>
+                <div class="password-container">
+                    <input type="password" name="confirm_password" id="confirm-password" class="form-input" placeholder="تایید رمز عبور" required>
+                    <i class="fas fa-eye eye-icon" id="toggle-confirm-password"></i>
+                </div>
+                <button type="submit" class="form-button">ثبت‌نام</button>
+            </form>
+
+            <div class="form-link">
+                <a href="#" id="show-login">ورود</a>
+            </div>
         </div>
-        <form method="POST" action="">
-            <input type="text" name="username" placeholder="نام کاربری" required>
-            <div class="password-container">
-                <input type="password" name="password" placeholder="رمز عبور" required id="password">
-                <span class="eye-icon" onclick="togglePassword()">👁️</span>
-            </div>
-            <div class="password-container">
-                <input type="password" name="confirm_password" placeholder="تکرار رمز عبور" required id="confirm_password">
-                <span class="eye-icon" onclick="toggleConfirmPassword()">👁️</span>
-            </div>
-            <button type="submit" name="register" class="btn">ثبت‌نام</button>
-            <p>
-                
-            </p>
-            <button class="btn" onclick="window.location.href='index.php'">صفحه اصلی</button>
-        </form>
-        <button class="toggle-btn" onclick="window.location.href='login.php'">قبلاً ثبت‌نام کرده‌اید؟ ورود</button>
     </div>
 
     <script>
-        function togglePassword() {
-            const passwordField = document.getElementById('password');
-            const eyeIcon = document.querySelector('.eye-icon');
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                eyeIcon.textContent = "🙈"; // آیکون مخفی کردن
-            } else {
-                passwordField.type = "password";
-                eyeIcon.textContent = "👁️"; // آیکون نمایش
-            }
-        }
+        // Toggle Password Visibility for Login
+        const toggleLoginPassword = document.getElementById('toggle-login-password');
+        const loginPassword = document.getElementById('login-password');
+        toggleLoginPassword.addEventListener('click', function () {
+            const type = loginPassword.type === 'password' ? 'text' : 'password';
+            loginPassword.type = type;
+            toggleLoginPassword.classList.toggle('fa-eye-slash');
+        });
 
-        function toggleConfirmPassword() {
-            const confirmPasswordField = document.getElementById('confirm_password');
-            const eyeIcon = document.querySelector('.eye-icon');
-            if (confirmPasswordField.type === "password") {
-                confirmPasswordField.type = "text";
-                eyeIcon.textContent = "🙈"; // آیکون مخفی کردن
-            } else {
-                confirmPasswordField.type = "password";
-                eyeIcon.textContent = "👁️"; // آیکون نمایش
-            }
-        }
+        // Toggle Password Visibility for Signup
+        const toggleSignupPassword = document.getElementById('toggle-signup-password');
+        const signupPassword = document.getElementById('signup-password');
+        toggleSignupPassword.addEventListener('click', function () {
+            const type = signupPassword.type === 'password' ? 'text' : 'password';
+            signupPassword.type = type;
+            toggleSignupPassword.classList.toggle('fa-eye-slash');
+        });
+
+        // Toggle Password Visibility for Confirm Password
+        const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+        const confirmPassword = document.getElementById('confirm-password');
+        toggleConfirmPassword.addEventListener('click', function () {
+            const type = confirmPassword.type === 'password' ? 'text' : 'password';
+            confirmPassword.type = type;
+            toggleConfirmPassword.classList.toggle('fa-eye-slash');
+        });
+
+        document.getElementById("show-signup").addEventListener("click", function () {
+            document.getElementById("signup-form").style.display = "block";
+            document.querySelector("form").style.display = "none";
+        });
+
+        document.getElementById("show-login").addEventListener("click", function () {
+            document.getElementById("signup-form").style.display = "none";
+            document.querySelector("form").style.display = "block";
+        });
     </script>
+
 </body>
 </html>
